@@ -127,6 +127,7 @@ No modules.
 | <a name="input_aws_exocompute_subnet_1_cidr"></a> [aws\_exocompute\_subnet\_1\_cidr](#input\_aws\_exocompute\_subnet\_1\_cidr) | Subnet 1 CIDR for the AWS account hosting Exocompute. | `string` | n/a | yes |
 | <a name="input_aws_exocompute_subnet_2_cidr"></a> [aws\_exocompute\_subnet\_2\_cidr](#input\_aws\_exocompute\_subnet\_2\_cidr) | Subnet 2 CIDR for the AWS account hosting Exocompute. | `string` | n/a | yes |
 | <a name="input_aws_exocompute_vpc_cidr"></a> [aws\_exocompute\_vpc\_cidr](#input\_aws\_exocompute\_vpc\_cidr) | VPC CIDR for the AWS account hosting Exocompute. | `string` | n/a | yes |
+| <a name="input_aws_profile"></a> [aws\_profile](#input\_aws\_profile) | AWS profile name. | `string` | n/a | yes |
 | <a name="input_rsc_aws_cnp_account_id"></a> [rsc\_aws\_cnp\_account\_id](#input\_rsc\_aws\_cnp\_account\_id) | Polaris account ID for the AWS account hosting Exocompute. | `string` | n/a | yes |
 | <a name="input_rsc_credentials"></a> [rsc\_credentials](#input\_rsc\_credentials) | Path to the Rubrik Security Cloud service account file. | `string` | n/a | yes |
 | <a name="input_rsc_exocompute_region"></a> [rsc\_exocompute\_region](#input\_rsc\_exocompute\_region) | AWS region for the Exocompute cluster. | `string` | n/a | yes |

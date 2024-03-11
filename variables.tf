@@ -35,3 +35,8 @@ variable "rsc_exocompute_region" {
   description = "AWS region for the Exocompute cluster."  
   
 }
+
+variable "aws_profile" {
+  type        = string
+  description = "AWS profile name."
+}

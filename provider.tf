@@ -13,7 +13,7 @@ terraform {
 }
 
 provider "aws" {
-  region = var.rsc_exocompute_region
+  profile = var.aws_profile
 }
 
 provider "polaris" {
