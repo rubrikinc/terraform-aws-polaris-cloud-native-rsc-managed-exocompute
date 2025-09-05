@@ -82,14 +82,14 @@ variable "rsc_exocompute_region" {
 check "deprecations" {
   assert {
     condition     = var.aws_profile == null
-    error_message = "The aws_profile variable has been deprecated. It has no replacement and will be removed in a future release."
+    error_message = "The aws_profile variable has been deprecated. It has no replacement and will be removed in a future release. To continue using an AWS profile, pass the profile to the AWS provider block in the root module."
   }
   assert {
     condition     = var.rsc_credentials == null
-    error_message = "The rsc_credentials variable has been deprecated. It has no replacement and will be removed in a future release."
+    error_message = "The rsc_credentials variable has been deprecated. It has no replacement and will be removed in a future release. To continue using an RSC service account file, pass the file name to the Polaris provider block in the root module."
   }
   assert {
     condition     = var.rsc_exocompute_region == null
-    error_message = "The rsc_exocompute_region variable has been deprecated. It has no replacement and will be removed in a future release."
+    error_message = "The rsc_exocompute_region variable has been deprecated. It has no replacement and will be removed in a future release. The Exocompute region is now the region used by the AWS provider."
   }
 }
