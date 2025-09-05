@@ -33,6 +33,21 @@ module "rsc_managed_exocompute" {
 * Add support for specifying additional tags to the resources being created in AWS.
 * Fix the cluster and worker egress rules for 0.0.0.0/0 according to the RSC documentation.
 
+## Upgrading
+Before upgrading the module, be sure to read through the changelog to understand the changes in the new version and any
+upgrade instruction for the version you are upgrading to.
+
+To upgrade the module to a new version, use the following steps:
+1. Update the `version` field in the `module` block to the version you want to upgrade to, e.g. `version = "0.2.0"`.
+2. Run `terraform init --upgrade` to update the providers and modules in your configuration.
+3. Run `terraform plan` and check the output carefully to ensure that there are no unexpected changes caused by the
+   upgrade.
+4. Run `terraform apply` if there are expected changes that you want to apply.
+
+Note, as variables in the module are deprecated, you may see warnings in the output of `terraform plan`. It's
+recommended that you follow the instructions in the deprecation message. Eventually deprecated variables will be
+removed.
+
 <!-- BEGIN_TF_DOCS -->
 
 
