@@ -21,24 +21,27 @@ resources.
 |------|---------|
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=5.26.0 |
 | <a name="requirement_polaris"></a> [polaris](#requirement\_polaris) | >=1.0.0 |
+| <a name="requirement_time"></a> [time](#requirement\_time) | >=0.13.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_time"></a> [time](#provider\_time) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >=5.26.0 |
+| <a name="provider_time"></a> [time](#provider\_time) | >=0.13.1 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
 | [time_sleep.wait_for_rsc](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) | resource |
+| [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_rsc_aws_cloud_native"></a> [rsc\_aws\_cloud\_native](#module\_rsc\_aws\_cloud\_native) | rubrikinc/polaris-cloud-native/aws | >=1.0.0 |
+| <a name="module_cloud_native"></a> [cloud\_native](#module\_cloud\_native) | rubrikinc/polaris-cloud-native/aws | n/a |
 | <a name="module_rsc_managed_exocompute"></a> [rsc\_managed\_exocompute](#module\_rsc\_managed\_exocompute) | ../../ | n/a |
 
 ## Inputs
@@ -47,9 +50,6 @@ resources.
 |------|-------------|------|---------|:--------:|
 | <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | AWS account ID of the account to protect with RSC. | `string` | n/a | yes |
 | <a name="input_aws_account_name"></a> [aws\_account\_name](#input\_aws\_account\_name) | AWS account name of the account to protect with RSC. | `string` | n/a | yes |
-| <a name="input_aws_profile"></a> [aws\_profile](#input\_aws\_profile) | AWS profile to use with the RSC account. | `string` | n/a | yes |
-| <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS regions to protect with RSC. | `string` | n/a | yes |
-| <a name="input_rsc_credentials"></a> [rsc\_credentials](#input\_rsc\_credentials) | Path to the RSC service account file. | `string` | n/a | yes |
 
 ## Outputs
 
