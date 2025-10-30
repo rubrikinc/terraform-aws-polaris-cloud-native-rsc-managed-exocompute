@@ -21,6 +21,9 @@ module "rsc_managed_exocompute" {
 
 # Changelog
 
+## v0.2.1
+* Update the with_cloud_native_aws_module example.
+
 ## v0.2.0
 * Relax the AWS provider version constraint to `>=5.26.0`.
 * Relax the RSC (Polaris) provider version constraint to `>=1.0.0`.

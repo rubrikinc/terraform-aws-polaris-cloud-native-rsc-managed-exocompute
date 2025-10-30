@@ -8,6 +8,10 @@ terraform {
       source  = "rubrikinc/polaris"
       version = ">=1.0.0"
     }
+    time = {
+      source  = "hashicorp/time"
+      version = ">=0.13.1"
+    }
   }
 }
 
@@ -21,57 +25,53 @@ variable "aws_account_name" {
   description = "AWS account name of the account to protect with RSC."
 }
 
-variable "aws_profile" {
-  type        = string
-  description = "AWS profile to use with the RSC account."
-}
+provider "aws" {}
 
-variable "aws_region" {
-  type        = string
-  description = "AWS regions to protect with RSC."
-}
+provider "polaris" {}
 
-variable "rsc_credentials" {
-  type        = string
-  description = "Path to the RSC service account file."
-}
+data "aws_region" "current" {}
 
-provider "aws" {
-  region = var.aws_region
-}
-
-provider "polaris" {
-  credentials = var.rsc_credentials
-}
-
-module "rsc_aws_cloud_native" {
-  source  = "rubrikinc/polaris-cloud-native/aws"
-  version = ">=1.0.0"
+module "cloud_native" {
+  source = "rubrikinc/polaris-cloud-native/aws"
 
   aws_account_id   = var.aws_account_id
   aws_account_name = var.aws_account_name
-  aws_profile      = var.aws_profile
-  aws_regions      = [var.aws_region]
-  rsc_credentials  = var.rsc_credentials
+
+  aws_regions = [
+    data.aws_region.current.name,
+  ]
 
   rsc_aws_features = [
     {
-      name              = "CLOUD_NATIVE_PROTECTION"
-      permission_groups = ["BASIC"]
+      name = "CLOUD_NATIVE_PROTECTION"
+      permission_groups = [
+        "BASIC",
+      ]
     },
     {
-      name              = "EXOCOMPUTE"
-      permission_groups = ["BASIC", "RSC_MANAGED_CLUSTER"]
+      name = "EXOCOMPUTE"
+      permission_groups = [
+        "BASIC",
+        "RSC_MANAGED_CLUSTER",
+      ]
     },
   ]
+
+  tags = {
+    Environment = "test"
+    Example     = "basic"
+    Module      = "terraform-aws-polaris-cloud-native-rsc-managed-exocompute"
+  }
 }
 
 # Give RSC some time to propagate all the changes before we try to use the new
 # cloud account.
 resource "time_sleep" "wait_for_rsc" {
-  create_duration = "60s"
+  create_duration = "15s"
 
-  depends_on = [module.rsc_aws_cloud_native]
+  depends_on = [
+    module.cloud_native,
+  ]
 }
 
 module "rsc_managed_exocompute" {
@@ -81,7 +81,7 @@ module "rsc_managed_exocompute" {
   aws_exocompute_subnet_1_cidr      = "172.20.1.0/24"
   aws_exocompute_subnet_2_cidr      = "172.20.2.0/24"
   aws_exocompute_vpc_cidr           = "172.20.0.0/16"
-  rsc_aws_cnp_account_id            = module.rsc_aws_cloud_native.rsc_aws_cnp_account_id
+  rsc_aws_cnp_account_id            = module.cloud_native.rsc_aws_cnp_account_id
 
   tags = {
     Environment = "test"
@@ -89,5 +89,7 @@ module "rsc_managed_exocompute" {
     Module      = "terraform-aws-polaris-cloud-native-rsc-managed-exocompute"
   }
 
-  depends_on = [time_sleep.wait_for_rsc]
+  depends_on = [
+    time_sleep.wait_for_rsc,
+  ]
 }
