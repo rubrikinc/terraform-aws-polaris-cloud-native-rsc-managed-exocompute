@@ -28,10 +28,11 @@ module "rsc_managed_exocompute" {
   aws_exocompute_subnet_2_cidr      = "172.20.2.0/24"
   aws_exocompute_vpc_cidr           = "172.20.0.0/16"
   rsc_aws_cnp_account_id            = var.example_account_id
+  rsc_aws_exocompute_cluster_access = "EKS_CLUSTER_ACCESS_TYPE_PRIVATE"
 
   tags = {
     Environment = "test"
-    Example     = "basic"
+    Example     = "private"
     Module      = "terraform-aws-polaris-cloud-native-rsc-managed-exocompute"
   }
 }

@@ -53,6 +53,20 @@ variable "rsc_aws_cnp_account_id" {
   }
 }
 
+variable "rsc_aws_exocompute_cluster_access" {
+  type        = string
+  default     = null
+  description = "EKS cluster access type for the Exocompute configuration. Possible values are EKS_CLUSTER_ACCESS_TYPE_PUBLIC and EKS_CLUSTER_ACCESS_TYPE_PRIVATE."
+
+  validation {
+    condition = var.rsc_aws_exocompute_cluster_access == null || contains(
+      ["EKS_CLUSTER_ACCESS_TYPE_PUBLIC", "EKS_CLUSTER_ACCESS_TYPE_PRIVATE"],
+      var.rsc_aws_exocompute_cluster_access,
+    )
+    error_message = "Cluster access type must be EKS_CLUSTER_ACCESS_TYPE_PUBLIC or EKS_CLUSTER_ACCESS_TYPE_PRIVATE."
+  }
+}
+
 variable "tags" {
   type        = map(string)
   default     = null

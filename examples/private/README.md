@@ -1,6 +1,6 @@
-# Basic RSC Managed Exocompute
+# Private RSC Managed Exocompute
 The configuration in this directory creates a VPC in AWS and an Exocompute configuration in RSC for RSC managed
-Exocompute.
+Exocompute with private EKS cluster access.
 
 ## Usage
 To run this example you need to execute:

@@ -6,7 +6,7 @@ terraform {
     }
     polaris = {
       source  = "rubrikinc/polaris"
-      version = ">=1.0.0"
+      version = ">=1.5.0"
     }
     time = {
       source  = "hashicorp/time"
@@ -59,7 +59,7 @@ module "cloud_native" {
 
   tags = {
     Environment = "test"
-    Example     = "basic"
+    Example     = "with_cloud_native_aws_module"
     Module      = "terraform-aws-polaris-cloud-native-rsc-managed-exocompute"
   }
 }
@@ -85,7 +85,7 @@ module "rsc_managed_exocompute" {
 
   tags = {
     Environment = "test"
-    Example     = "basic"
+    Example     = "with_cloud_native_aws_module"
     Module      = "terraform-aws-polaris-cloud-native-rsc-managed-exocompute"
   }
 
