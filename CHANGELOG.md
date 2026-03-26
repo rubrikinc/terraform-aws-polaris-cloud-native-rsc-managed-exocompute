@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.3.0
+* Add support for selecting the EKS cluster access type via the `rsc_aws_exocompute_cluster_access` variable.
+* Bump the RSC (Polaris) provider version constraint to `>=1.5.0`.
+* Add private Exocompute example.
+
 ## v0.2.1
 * Update the with_cloud_native_aws_module example.
 
