@@ -18,10 +18,16 @@ module "rsc_managed_exocompute" {
 
 ## Examples
 - [Basic Exocompute](examples/basic)
+- [Pod Subnets](examples/pod_subnets)
 - [Private Exocompute](examples/private)
 - [With Cloud Native AWS Module](examples/with_cloud_native_aws_module)
 
 # Changelog
+
+## v0.4.0
+* Add support for pod subnets via the `aws_exocompute_pod_subnet_1_cidr` and `aws_exocompute_pod_subnet_2_cidr`
+  variables.
+* Add pod subnets example.
 
 ## v0.3.0
 * Add support for selecting the EKS cluster access type via the `rsc_aws_exocompute_cluster_access` variable.
@@ -92,6 +98,8 @@ removed.
 | [aws_route_table_association.rsc_exocompute_public](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association) | resource |
 | [aws_security_group.cluster](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group.worker](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
+| [aws_subnet.rsc_exocompute_pod_subnet_1](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
+| [aws_subnet.rsc_exocompute_pod_subnet_2](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
 | [aws_subnet.rsc_exocompute_public](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
 | [aws_subnet.rsc_exocompute_subnet_1](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
 | [aws_subnet.rsc_exocompute_subnet_2](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
@@ -120,6 +128,8 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_aws_exocompute_pod_subnet_1_cidr"></a> [aws\_exocompute\_pod\_subnet\_1\_cidr](#input\_aws\_exocompute\_pod\_subnet\_1\_cidr) | Pod subnet 1 CIDR for the AWS account hosting Exocompute. | `string` | `null` | no |
+| <a name="input_aws_exocompute_pod_subnet_2_cidr"></a> [aws\_exocompute\_pod\_subnet\_2\_cidr](#input\_aws\_exocompute\_pod\_subnet\_2\_cidr) | Pod subnet 2 CIDR for the AWS account hosting Exocompute. | `string` | `null` | no |
 | <a name="input_aws_exocompute_public_subnet_cidr"></a> [aws\_exocompute\_public\_subnet\_cidr](#input\_aws\_exocompute\_public\_subnet\_cidr) | Public subnet CIDR for the AWS account hosting Exocompute. | `string` | n/a | yes |
 | <a name="input_aws_exocompute_subnet_1_cidr"></a> [aws\_exocompute\_subnet\_1\_cidr](#input\_aws\_exocompute\_subnet\_1\_cidr) | Subnet 1 CIDR for the AWS account hosting Exocompute. | `string` | n/a | yes |
 | <a name="input_aws_exocompute_subnet_2_cidr"></a> [aws\_exocompute\_subnet\_2\_cidr](#input\_aws\_exocompute\_subnet\_2\_cidr) | Subnet 2 CIDR for the AWS account hosting Exocompute. | `string` | n/a | yes |

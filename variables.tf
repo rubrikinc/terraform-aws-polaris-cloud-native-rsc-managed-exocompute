@@ -67,6 +67,32 @@ variable "rsc_aws_exocompute_cluster_access" {
   }
 }
 
+variable "aws_exocompute_pod_subnet_1_cidr" {
+  type        = string
+  default     = null
+  description = "Pod subnet 1 CIDR for the AWS account hosting Exocompute."
+
+  validation {
+    condition     = var.aws_exocompute_pod_subnet_1_cidr == null || can(cidrhost(var.aws_exocompute_pod_subnet_1_cidr, 0))
+    error_message = "Must be a valid CIDR address."
+  }
+}
+
+variable "aws_exocompute_pod_subnet_2_cidr" {
+  type        = string
+  default     = null
+  description = "Pod subnet 2 CIDR for the AWS account hosting Exocompute."
+
+  validation {
+    condition     = var.aws_exocompute_pod_subnet_2_cidr == null || can(cidrhost(var.aws_exocompute_pod_subnet_2_cidr, 0))
+    error_message = "Must be a valid CIDR address."
+  }
+  validation {
+    condition     = (var.aws_exocompute_pod_subnet_2_cidr == null) == (var.aws_exocompute_pod_subnet_1_cidr == null)
+    error_message = "Pod subnet 1 CIDR and pod subnet 2 CIDR must be specified together."
+  }
+}
+
 variable "tags" {
   type        = map(string)
   default     = null
