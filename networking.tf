@@ -230,10 +230,37 @@ resource "aws_route_table_association" "rsc_exocompute_private_1" {
   route_table_id = aws_route_table.rsc_exocompute_private.id
 }
 
-
 resource "aws_route_table_association" "rsc_exocompute_private_2" {
   subnet_id      = aws_subnet.rsc_exocompute_subnet_2.id
   route_table_id = aws_route_table.rsc_exocompute_private.id
+}
+
+# Pod subnets.
+
+resource "aws_subnet" "rsc_exocompute_pod_subnet_1" {
+  count = var.aws_exocompute_pod_subnet_1_cidr != null ? 1 : 0
+
+  vpc_id                  = aws_vpc.rsc_exocompute.id
+  cidr_block              = var.aws_exocompute_pod_subnet_1_cidr
+  availability_zone       = "${data.aws_region.current.name}a"
+  map_public_ip_on_launch = false
+
+  tags = merge({
+    Name = "Rubrik Exocompute Pod Subnet 1"
+  }, var.tags)
+}
+
+resource "aws_subnet" "rsc_exocompute_pod_subnet_2" {
+  count = var.aws_exocompute_pod_subnet_2_cidr != null ? 1 : 0
+
+  vpc_id                  = aws_vpc.rsc_exocompute.id
+  cidr_block              = var.aws_exocompute_pod_subnet_2_cidr
+  availability_zone       = "${data.aws_region.current.name}b"
+  map_public_ip_on_launch = false
+
+  tags = merge({
+    Name = "Rubrik Exocompute Pod Subnet 2"
+  }, var.tags)
 }
 
 # EKS cluster security groups.
