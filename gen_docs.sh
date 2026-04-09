@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 terraform-docs markdown table --hide-empty --output-file README.md --sort .
 terraform-docs markdown table --hide-empty --output-file README.md --sort ./examples/basic
+terraform-docs markdown table --hide-empty --output-file README.md --sort ./examples/pod_subnets
 terraform-docs markdown table --hide-empty --output-file README.md --sort ./examples/private
 terraform-docs markdown table --hide-empty --output-file README.md --sort ./examples/with_cloud_native_aws_module
